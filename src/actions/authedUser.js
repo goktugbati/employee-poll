@@ -17,11 +17,16 @@ export function logoutAuthedUser() {
 export function handleLogin(username, password) {
     return (dispatch, getState) => {
         const {users} = getState();
+        console.log(username, password);
 
-        const user = Object.values(users).find((user) => user.id === username && user.password === password);
+        const user = Object.values(users).find(user => user.id === username && user.password === password)
+        console.log(user);
 
         if (!!user) {
+            console.log(user);
             return dispatch(setAuthedUser(user));
+        } else {
+            return false
         }
     };
 }

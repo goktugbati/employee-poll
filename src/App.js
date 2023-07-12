@@ -8,6 +8,7 @@ import {Route, Routes} from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Nav from "./components/Nav";
 import Dashboard from "./components/Dashboard";
+import LeaderBoard from "./components/LeaderBoard";
 
 function App({dispatch, loggedIn}) {
     useEffect(() => {
@@ -21,6 +22,7 @@ function App({dispatch, loggedIn}) {
                 <Route path="/login" exact element={<Login/>}/>
                 <Route path="/" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
                 <Route path="/questions/:id" element={<PrivateRoute><Login/></PrivateRoute>}/>
+                <Route path="/leaderboard" element={<PrivateRoute><LeaderBoard/></PrivateRoute>}/>
             </Routes>
         </div>
   );

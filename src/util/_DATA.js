@@ -1,9 +1,9 @@
 let users = {
   sarahedo: {
     id: 'sarahedo',
-    password:'password123',
+    password: 'password123',
     name: 'Sarah Edo',
-    avatarURL: null,
+    avatarURL: 'https://static.frontendmasters.com/assets/teachers/drasner/thumb@2x.jpg',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -14,9 +14,9 @@ let users = {
   },
   tylermcginnis: {
     id: 'tylermcginnis',
-    password:'abc321',
+    password: 'abc321',
     name: 'Tyler McGinnis',
-    avatarURL: null,
+    avatarURL: 'https://pbs.twimg.com/profile_images/1428205319616798721/xmr7q976_400x400.jpg',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -25,7 +25,7 @@ let users = {
   },
   mtsamis: {
     id: 'mtsamis',
-    password:'xyz123',
+    password: 'xyz123',
     name: 'Mike Tsamis',
     avatarURL: null,
     answers: {
@@ -37,7 +37,7 @@ let users = {
   },
   zoshikanlu: {
     id: 'zoshikanlu',
-    password:'pass246',
+    password: 'pass246',
     name: 'Zenobia Oshikanlu',
     avatarURL: null,
     answers: {

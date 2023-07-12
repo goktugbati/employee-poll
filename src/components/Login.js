@@ -22,7 +22,7 @@ const Login = ({dispatch, loggedIn}) => {
     if (loggedIn) {
         const urlParams = new URLSearchParams(window.location.search);
         const redirectUrl = urlParams.get('redirectTo');
-        return <Navigate to={redirectUrl ? redirectUrl : "/"}/>;
+        return <Navigate to={redirectUrl ? redirectUrl : "/"} />;
     }
 
     const handleUsername = (e) => {
@@ -82,6 +82,7 @@ const Login = ({dispatch, loggedIn}) => {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={handlePassword}
                     />
                     <Button
                         type="submit"
