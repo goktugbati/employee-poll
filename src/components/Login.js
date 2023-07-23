@@ -9,40 +9,49 @@ import {
     Button,
     Container,
     CssBaseline,
-    Grid,
-    Link,
     TextField,
     Typography
 } from "@mui/material";
 
 const Login = ({dispatch, loggedIn}) => {
-    const [username, setUsername] = useState("sarahedo");
-    const [password, setPassword] = useState("password123");
+    const [credentials, setCredentials] = useState({
+        username: "tylermcginnis",
+        password: "abc321",
+    });
+    const [error, setError] = useState("");
 
     if (loggedIn) {
         const urlParams = new URLSearchParams(window.location.search);
         const redirectUrl = urlParams.get('redirectTo');
-        return <Navigate to={redirectUrl ? redirectUrl : "/"} />;
+        console.log(redirectUrl);
+        if (redirectUrl) {
+            return <Navigate to={redirectUrl} />;
+        } else {
+            return <Navigate to="/" />;
+        }
     }
 
-    const handleUsername = (e) => {
-        const value = e.target.value;
-        setUsername(value);
-    };
+    const handleUsername = (e) => setCredentials({
+        ...credentials,
+        username: e.target.value
+    })
 
-    const handlePassword = (e) => {
-        const value = e.target.value;
-        setPassword(value);
-    };
+
+    const handlePassword = (e) => setCredentials({
+        ...credentials,
+        password: e.target.value
+    })
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(handleLogin(username, password));
-        setUsername("");
-        setPassword("");
+        const res = dispatch(handleLogin(credentials));
+        if (!res) {
+            setError("Invalid username or password");
+        }
     };
 
     return (
+        <div>
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <Box
@@ -61,7 +70,7 @@ const Login = ({dispatch, loggedIn}) => {
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                     <TextField
-                        value={username}
+                        value={credentials.username}
                         margin="normal"
                         required
                         fullWidth
@@ -73,7 +82,7 @@ const Login = ({dispatch, loggedIn}) => {
                         autoFocus
                     />
                     <TextField
-                        value={password}
+                        value={credentials.password}
                         margin="normal"
                         required
                         fullWidth
@@ -92,21 +101,10 @@ const Login = ({dispatch, loggedIn}) => {
                     >
                         Sign In
                     </Button>
-                    <Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Forgot password?
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
-                        </Grid>
-                    </Grid>
                 </Box>
             </Box>
         </Container>
+        </div>
     );
 };
 
