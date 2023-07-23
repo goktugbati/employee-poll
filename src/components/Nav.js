@@ -42,6 +42,19 @@ const Nav = ({ dispatch, authedUser, users }) => {
           >
             {authedUser ? authedUser.id : ""}
           </Typography>
+          <Typography
+            spacing={100}
+            variant="h6"
+            component="div"
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "block" },
+              padding: 1,
+            }}
+            id="userName"
+          >
+            {authedUser ? authedUser.name : ""}
+          </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             <Button>
               <Link
