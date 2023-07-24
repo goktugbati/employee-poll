@@ -5,7 +5,7 @@ import PollCard from "./PollCard";
 import { useState } from "react";
 
 const Dashboard = ({ authedUser, questions, users }) => {
-  const [displayPolls, setDisplayPolls] = useState("answered");
+  const [displayPolls, setDisplayPolls] = useState("unanswered");
 
   const answered = Object.values(questions)
     .filter((poll) => {
