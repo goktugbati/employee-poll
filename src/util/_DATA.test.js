@@ -34,3 +34,25 @@ describe("_saveQuestion", () => {
     );
   });
 });
+
+describe("_saveQuestionAnswer", () => {
+  test("should return true for correct parameters", async () => {
+    const response = await _saveQuestionAnswer({
+      authedUser: "sarahedo",
+      qid: "8xf0y6ziyjabvozdd253nd",
+      answer: "optionTwo",
+    });
+
+    expect(response).toBeTruthy();
+  });
+
+  test("should return error for incorrect parameters", async () => {
+    const response = await _saveQuestionAnswer({
+      authedUser: undefined,
+      qid: undefined,
+      answer: "optionTwo",
+    }).catch((e) => e);
+
+    expect(response).toBe("Please provide authedUser, qid, and answer");
+  });
+});

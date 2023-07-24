@@ -11,10 +11,6 @@ const NewPoll = ({ dispatch }) => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (optionOne === "" || optionTwo === "") {
-      alert("Please enter both options");
-      return;
-    }
     dispatch(handleAddQuestion(optionOne, optionTwo));
     navigate("/");
   };
@@ -36,6 +32,7 @@ const NewPoll = ({ dispatch }) => {
             onChange={(e) => setOptionOne(e.target.value)}
             variant="outlined"
             margin="normal"
+            data-testid="first-option"
             fullWidth
             required
           />
@@ -45,10 +42,16 @@ const NewPoll = ({ dispatch }) => {
             onChange={(e) => setOptionTwo(e.target.value)}
             variant="outlined"
             margin="normal"
+            data-testid="second-option"
             fullWidth
             required
           />
-          <Button type="submit" variant="contained" color="primary">
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            data-testid="submit-button"
+          >
             Submit
           </Button>
         </form>

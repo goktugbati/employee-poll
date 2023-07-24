@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Box, CssBaseline, Link, Typography } from "@mui/material";
+import { Avatar, Box, Link } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
@@ -29,32 +29,15 @@ const Nav = ({ dispatch, authedUser, users }) => {
           ) : (
             <Avatar {...stringAvatar(authedUser.name)} />
           )}
+          <Box sx={{ flexGrow: 1, padding: 1 }}>
+            {authedUser && authedUser.id && <div>{authedUser.id}</div>}
+          </Box>
+          <Box sx={{ flexGrow: 1 }}>
+            <h2 data-testid="username">
+              {authedUser && authedUser.name && <div>{authedUser.name}</div>}
+            </h2>
+          </Box>
 
-          <Typography
-            spacing={50}
-            variant="h6"
-            component="div"
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", sm: "block" },
-              padding: 1,
-            }}
-          >
-            {authedUser ? authedUser.id : ""}
-          </Typography>
-          <Typography
-            spacing={100}
-            variant="h6"
-            component="div"
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", sm: "block" },
-              padding: 1,
-            }}
-            id="userName"
-          >
-            {authedUser ? authedUser.name : ""}
-          </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             <Button>
               <Link
