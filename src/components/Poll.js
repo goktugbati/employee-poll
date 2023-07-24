@@ -18,7 +18,6 @@ const Poll = ({ authedUser, users, questions, dispatch }) => {
   };
   const [voteCount, setVoteCount] = useState(initialVoteCount);
   if (!questions[id]) {
-    console.log("amk");
     return <Error404 />;
   }
   return (
