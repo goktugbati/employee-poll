@@ -33,7 +33,7 @@ const LeaderBoard = ({ users }) => {
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ paddingTop: 10 }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
