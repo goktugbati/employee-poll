@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Login from "./components/Login";
 import { useEffect } from "react";
@@ -11,6 +10,7 @@ import Dashboard from "./components/Dashboard";
 import LeaderBoard from "./components/LeaderBoard";
 import Poll from "./components/Poll";
 import NewPoll from "./components/NewPoll";
+import Error404 from "./components/Error404";
 
 function App({ dispatch, loggedIn }) {
   useEffect(() => {
@@ -54,6 +54,7 @@ function App({ dispatch, loggedIn }) {
             </PrivateRoute>
           }
         />
+        <Route path="/*" element={<Error404 />} />
       </Routes>
     </div>
   );

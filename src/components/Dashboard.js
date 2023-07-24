@@ -1,9 +1,12 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Box } from "@mui/material";
+import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import PollCard from "./PollCard";
+import { useState } from "react";
 
 const Dashboard = ({ authedUser, questions, users }) => {
+  const [displayPolls, setDisplayPolls] = useState("answered");
+
   const answered = Object.values(questions)
     .filter((poll) => {
       return (
@@ -23,6 +26,12 @@ const Dashboard = ({ authedUser, questions, users }) => {
   console.log("Answered Questions:", answered);
   console.log("Unanswered Questions:", unanswered);
 
+  const handleChange = (e, displayPolls) => {
+    e.preventDefault();
+    console.log(displayPolls);
+    setDisplayPolls(displayPolls);
+  };
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       <Box
@@ -30,26 +39,25 @@ const Dashboard = ({ authedUser, questions, users }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          marginTop: 8,
+          marginTop: 10,
         }}
       >
-        <h1>Answered Questions</h1>
-        {answered.map((question) => (
-          <PollCard question={question} user={users[question.author]} />
-        ))}
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          marginTop: 8,
-        }}
-      >
-        <h1>Unanswered Questions</h1>
-        {unanswered.map((question) => (
-          <PollCard question={question} user={users[question.author]} />
-        ))}
+        <ToggleButtonGroup
+          color="primary"
+          value={displayPolls}
+          onChange={handleChange}
+          exclusive
+        >
+          <ToggleButton value="unanswered">Unanswered Polls</ToggleButton>
+          <ToggleButton value="answered">Answered Polls</ToggleButton>
+        </ToggleButtonGroup>
+        {displayPolls === "answered"
+          ? answered.map((question) => (
+              <PollCard question={question} user={users[question.author]} />
+            ))
+          : unanswered.map((question) => (
+              <PollCard question={question} user={users[question.author]} />
+            ))}
       </Box>
     </Box>
   );
