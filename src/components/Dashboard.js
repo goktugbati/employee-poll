@@ -1,10 +1,16 @@
 import * as React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import PollCard from "./PollCard";
 import { useState } from "react";
 
-const Dashboard = ({ authedUser, questions, users }) => {
+const Dashboard = () => {
+  const authedUser = useSelector((state) => state.authedUser);
+  const questions = useSelector((state) =>
+    Object.values(state.questions).sort((a, b) => b.timestamp - a.timestamp)
+  );
+  const users = useSelector((state) => state.users);
+
   const [displayPolls, setDisplayPolls] = useState("unanswered");
 
   const answered = Object.values(questions)
@@ -63,10 +69,4 @@ const Dashboard = ({ authedUser, questions, users }) => {
   );
 };
 
-const mapStateToProps = ({ authedUser, questions, users }) => ({
-  authedUser,
-  questions: Object.values(questions).sort((a, b) => b.timestamp - a.timestamp),
-  users,
-});
-
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

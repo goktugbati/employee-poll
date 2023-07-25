@@ -1,4 +1,4 @@
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import { handleLogin } from "../actions/authedUser";
@@ -12,7 +12,10 @@ import {
   Typography,
 } from "@mui/material";
 
-const Login = ({ dispatch, loggedIn }) => {
+const Login = () => {
+  const loggedIn = useSelector((state) => !!state.authedUser);
+  const dispatch = useDispatch();
+
   const [credentials, setCredentials] = useState({
     username: "tylermcginnis",
     password: "abc321",
@@ -116,8 +119,4 @@ const Login = ({ dispatch, loggedIn }) => {
   );
 };
 
-const mapStateToProps = ({ authedUser }) => ({
-  loggedIn: !!authedUser,
-});
-
-export default connect(mapStateToProps)(Login);
+export default Login;

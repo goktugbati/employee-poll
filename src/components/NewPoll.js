@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Box, TextField } from "@mui/material";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { handleAddQuestion } from "../actions/questions";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
-const NewPoll = ({ dispatch }) => {
+const NewPoll = () => {
+  const dispatch = useDispatch();
+
   const [optionOne, setOptionOne] = useState("");
   const [optionTwo, setOptionTwo] = useState("");
   const navigate = useNavigate();
@@ -60,4 +62,4 @@ const NewPoll = ({ dispatch }) => {
   );
 };
 
-export default connect()(NewPoll);
+export default NewPoll;

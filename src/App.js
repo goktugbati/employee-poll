@@ -1,7 +1,7 @@
 import "./App.css";
 import Login from "./components/Login";
 import { useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { handleInitialData } from "./actions/shared";
 import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
@@ -12,7 +12,10 @@ import Poll from "./components/Poll";
 import NewPoll from "./components/NewPoll";
 import Error404 from "./components/Error404";
 
-function App({ dispatch, loggedIn }) {
+function App() {
+  const loggedIn = useSelector((state) => !!state.authedUser);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(handleInitialData());
   }, []);
@@ -60,8 +63,4 @@ function App({ dispatch, loggedIn }) {
   );
 }
 
-const mapStateToProps = ({ authedUser }) => ({
-  loggedIn: !!authedUser,
-});
-
-export default connect(mapStateToProps)(App);
+export default App;

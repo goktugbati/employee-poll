@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { handleAddAnswer } from "../actions/questions";
 import { Avatar, Box, ButtonGroup } from "@mui/material";
@@ -7,8 +7,14 @@ import { deepOrange } from "@mui/material/colors";
 import Button from "@mui/material/Button";
 import Error404 from "./Error404";
 
-const Poll = ({ authedUser, users, questions, dispatch }) => {
+const Poll = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
+
+  const users = useSelector((state) => state.users);
+  const questions = useSelector((state) => state.questions);
+  const authedUser = useSelector((state) => state.authedUser);
+
   const authorName = users[questions[id]?.author]?.name;
   const userAnswer = users[authedUser?.id]?.answers[id];
   const [answer, setAnswer] = useState(userAnswer);
@@ -17,6 +23,7 @@ const Poll = ({ authedUser, users, questions, dispatch }) => {
     optionTwo: questions[id]?.optionTwo?.votes?.length,
   };
   const [voteCount, setVoteCount] = useState(initialVoteCount);
+
   if (!questions[id]) {
     return <Error404 />;
   }
@@ -111,12 +118,4 @@ const Poll = ({ authedUser, users, questions, dispatch }) => {
     </Box>
   );
 };
-const mapStateToProps = ({ authedUser, users, questions }) => {
-  return {
-    authedUser,
-    users,
-    questions,
-  };
-};
-
-export default connect(mapStateToProps)(Poll);
+export default Poll;

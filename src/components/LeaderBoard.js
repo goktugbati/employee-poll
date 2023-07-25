@@ -10,10 +10,10 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
-const LeaderBoard = ({ users }) => {
-  console.log(users);
+const LeaderBoard = () => {
+  const users = useSelector((state) => state.users);
   const sortedUsers = Object.keys(users).sort((a, b) => {
     const userA = users[a];
     const userB = users[b];
@@ -81,10 +81,4 @@ const LeaderBoard = ({ users }) => {
   );
 };
 
-const mapStateToProps = ({ users }) => {
-  return {
-    users,
-  };
-};
-
-export default connect(mapStateToProps)(LeaderBoard);
+export default LeaderBoard;
