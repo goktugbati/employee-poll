@@ -1,12 +1,9 @@
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { configureStore } from "@reduxjs/toolkit";
 import reducer from "../reducers";
-import { setAuthedUser } from "../actions/authedUser";
-import { receiveUsers } from "../actions/users";
 import Nav from "./Nav";
-import { handleInitialData } from "../actions/shared";
 
 const store = configureStore({
   reducer: reducer,

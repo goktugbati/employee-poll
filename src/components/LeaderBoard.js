@@ -10,7 +10,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { connect, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const LeaderBoard = () => {
   const users = useSelector((state) => state.users);
@@ -45,7 +45,7 @@ const LeaderBoard = () => {
         </TableHead>
         <TableBody>
           {sortedUsers.map((user, index) => {
-            const { name, avatarURL, answers, questions, id } = users[user];
+            const { name, avatarURL, answers, questions } = users[user];
             return (
               <TableRow
                 key={index}

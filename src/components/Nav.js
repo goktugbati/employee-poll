@@ -3,12 +3,14 @@ import { Avatar, Box, Link } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
-import { connect, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { logoutAuthedUser } from "../actions/authedUser";
 import { Link as RouterLink } from "react-router-dom";
 
-const Nav = ({ dispatch, authedUser, users }) => {
-  const state = useSelector((state) => state);
+const Nav = () => {
+  const dispatch = useDispatch();
+  const authedUser = useSelector((state) => state.authedUser);
+  const users = useSelector((state) => state.users);
 
   const stringAvatar = (name) => {
     return {
@@ -86,9 +88,4 @@ const Nav = ({ dispatch, authedUser, users }) => {
     </div>
   );
 };
-const mapStateToProps = ({ authedUser, users }) => ({
-  authedUser,
-  users,
-});
-
-export default connect(mapStateToProps)(Nav);
+export default Nav;
